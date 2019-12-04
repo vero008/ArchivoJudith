@@ -10,9 +10,10 @@
 	    document.addEventListener("deviceready", onDeviceReady, false);
     }
     function onDeviceReady() {
+	    navigator.notification.alert("Práctica de Archivos Lista");
         document.getElementById("createFile").addEventListener("click", createFile);
         document.getElementById("writeFile").addEventListener("click", writeFile);
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+       // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
         //crear el archivo
         function createFile() {
@@ -22,7 +23,7 @@
 
    function successCallback(fs) {
       fs.root.getFile('archivo.txt', {create: true, exclusive: true}, function(fileEntry) {
-         alert('Archivo creado!'+ fs.root.fullPath + '')
+         alert('¡Archivo creado!' + fs.root.fullPath + '')
       }, errorCallback);
    }
 
@@ -65,7 +66,7 @@
   <body>
     <h1>Uso de File</h1>
     <p>Aguirre Frias y Guerrero Moreno</p>
-      <button id = "createFile">CREATE FILE</button>
-        <button id = "writeFile">WRITE FILE</button>
+      <button id = "createFile">Crear Archivo</button>
+        <button id = "writeFile">Escribir Archivo</button>
   </body>
 </html>
