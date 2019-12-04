@@ -39,6 +39,7 @@ document.getElementById("readFile").addEventListener("click", readFile);
       fs.root.getFile('archivo-vm.txt', {create: true}, function(fileEntry) {
          fileEntry.createWriter(function(fileWriter) {
             fileWriter.onwriteend = function(e) {
+		    alert('Escritura' )
                alert('Escritura completada '+ fileEntry.metadata.modificationTime);
             };
             fileWriter.onerror = function(e) {
