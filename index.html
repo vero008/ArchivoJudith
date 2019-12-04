@@ -11,7 +11,7 @@
             }
     
     function onDeviceReady() {
-	    //navigator.notification.alert("¡Práctica de archivos lista!");
+	    
         document.getElementById("createFile").addEventListener("click", createFile);
 document.getElementById("writeFile").addEventListener("click", writeFile);
 document.getElementById("readFile").addEventListener("click", readFile);
@@ -23,7 +23,7 @@ document.getElementById("readFile").addEventListener("click", readFile);
   window.requestFileSystem(type, size, successCallback, errorCallback)
    function successCallback(fs) {
       fs.root.getFile('archivo-vm.txt', {create: true, exclusive: true}, function(fileEntry) {
-         alert('¡Archivo creado! ' )//+ fs.root.fullPath +'')
+         alert('¡Archivo creado! ')
       }, errorCallback);
    }
    function errorCallback(error) {
@@ -39,9 +39,8 @@ document.getElementById("readFile").addEventListener("click", readFile);
       fs.root.getFile('archivo-vm.txt', {create: true}, function(fileEntry) {
          fileEntry.createWriter(function(fileWriter) {
             fileWriter.onwriteend = function(e) {
-		    alert('Escritura' )
-               alert('Escritura completada '+ fileEntry.metadata.modificationTime);
-            };
+		    alert('Escritura completada')
+               };
             fileWriter.onerror = function(e) {
                alert('Error en la escritura ' + e.toString());
             };
