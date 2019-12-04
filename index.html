@@ -39,7 +39,7 @@ document.getElementById("readFile").addEventListener("click", readFile);
       fs.root.getFile('archivo-vm.txt', {create: true}, function(fileEntry) {
          fileEntry.createWriter(function(fileWriter) {
             fileWriter.onwriteend = function(e) {
-		    alert('Escritura completada')
+		    alert('¡Se ha escrito en el archivo!')
                };
             fileWriter.onerror = function(e) {
                alert('Error en la escritura ' + e.toString());
