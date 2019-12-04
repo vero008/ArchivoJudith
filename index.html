@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FileWriter Example</title>
+   <title>Actividad 2. Archivo</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -13,20 +13,19 @@
     // PhoneGap is ready
     //
     function onDeviceReady() {
-	    navigator.notification.alert("PhoneGap is ready!");
+	    navigator.notification.alert("¡Práctica de archivos lista!");
         document.getElementById("createFile").addEventListener("click", createFile);
 document.getElementById("writeFile").addEventListener("click", writeFile);
 document.getElementById("readFile").addEventListener("click", readFile);
-document.getElementById("removeFile").addEventListener("click", removeFile);
-	    document.getElementById("meta").addEventListener("click", readMeta);
+
     }
    function createFile() {
    var type = window.TEMPORARY;
    var size = 5*1024*1024;
   window.requestFileSystem(type, size, successCallback, errorCallback)
    function successCallback(fs) {
-      fs.root.getFile('practica.txt', {create: true, exclusive: true}, function(fileEntry) {
-         alert('File creation successfull! ' + fs.root.fullPath +' jgj')
+      fs.root.getFile('archivo-vm.txt', {create: true, exclusive: true}, function(fileEntry) {
+         alert('¡Archivo creado! ' + fs.root.fullPath +'')
       }, errorCallback);
    }
    function errorCallback(error) {
@@ -39,15 +38,15 @@ document.getElementById("removeFile").addEventListener("click", removeFile);
    var size = 5*1024*1024;
    window.requestFileSystem(type, size, successCallback, errorCallback)
    function successCallback(fs) {
-      fs.root.getFile('practica.txt', {create: true}, function(fileEntry) {
+      fs.root.getFile('archivo-vm.txt', {create: true}, function(fileEntry) {
          fileEntry.createWriter(function(fileWriter) {
             fileWriter.onwriteend = function(e) {
-               alert('Write completed. '+ fileEntry.metadata.modificationTime);
+               alert('Escritura completada '+ fileEntry.metadata.modificationTime);
             };
             fileWriter.onerror = function(e) {
-               alert('Write failed: ' + e.toString());
+               alert('Error en la escritura ' + e.toString());
             };
-            var blob = new Blob(['practica practica practica'], {type: 'text/plain'});
+            var blob = new Blob(['Practica de Veronica y Mariana'], {type: 'text/plain'});
             fileWriter.write(blob);
          }, errorCallback);
       }, errorCallback);
@@ -61,7 +60,7 @@ document.getElementById("removeFile").addEventListener("click", removeFile);
    var size = 5*1024*1024;
    window.requestFileSystem(type, size, successCallback, errorCallback)
    function successCallback(fs) {
-      fs.root.getFile('practica.txt', {}, function(fileEntry) {
+      fs.root.getFile('archivo-vm.txt', {}, function(fileEntry) {
          fileEntry.file(function(file) {
             var reader = new FileReader();
             reader.onloadend = function(e) {
@@ -76,37 +75,19 @@ document.getElementById("removeFile").addEventListener("click", removeFile);
       alert("ERROR: " + error.code)
    }
 }
-      function removeFile() {
-   var type = window.TEMPORARY;
-   var size = 5*1024*1024;
-   window.requestFileSystem(type, size, successCallback, errorCallback)
-   function successCallback(fs) {
-      fs.root.getFile('practica.txt', {create: false}, function(fileEntry) {
-         fileEntry.remove(function() {
-            alert('File removed.');
-         }, errorCallback);
-      }, errorCallback);
-   }
-   function errorCallback(error) {
-      alert("ERROR: " + error.code)
-   }
-}
-	    function readMeta(){
-      workingDirectory.getFile("practica.txt", {}, function(fileEntry) {
-  workingDirectory.getDirectory("copiapractica", {}, function(dirEntry) {
-    fileEntry.copyTo(dirEntry);
-  }, handleError);
-}, handleError);
-	    }
+      
+	    
     </script>
   </head>
   <body onload="onBodyLoad()">
-    <h1>Example</h1>
-    <button id = "createFile">CREATE FILE</button>
-<button id = "writeFile">WRITE FILE</button>
-<button id = "readFile">READ FILE</button>
-<button id = "removeFile">DELETE FILE</button>
-	  <button id = "meta">METADATA FILE</button>
+    <center><h1>Actividad 2. Archivo</h1></center>
+      <center><h2>Verónica Aguirre Frías y Mariana Judith Guerrero Moreno</h2></center>
+    <center><button id = "createFile">Crear</button>
+<button id = "writeFile">Escribir</button>
+<button id = "readFile">Leer</button>
+        <div></div>
+<div>
 <textarea id = "textarea"></textarea>
+    </div></center>
   </body>
 </html>
