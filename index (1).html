@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Archivos</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+        
+    function onDeviceReady() {
+        document.getElementById("createFile").addEventListener("click", createFile);
+        document.getElementById("writeFile").addEventListener("click", writeFile);
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+    }
+        //crear el archivo
+        function createFile() {
+   var type = window.TEMPORARY;
+   var size = 5*1024*1024;
+   window.requestFileSystem(type, size, successCallback, errorCallback)
+
+   function successCallback(fs) {
+      fs.root.getFile('archivo.txt', {create: true, exclusive: true}, function(fileEntry) {
+         alert('Archivo creado!')
+      }, errorCallback);
+   }
+
+   function errorCallback(error) {
+      alert("ERROR: " + error.code)
+   }
+	
+}
+        //escribir el archivo
+        function writeFile() {
+   var type = window.TEMPORARY;
+   var size = 5*1024*1024;
+   window.requestFileSystem(type, size, successCallback, errorCallback)
+
+   function successCallback(fs) {
+      fs.root.getFile('archivo.txt', {create: true}, function(fileEntry) {
+
+         fileEntry.createWriter(function(fileWriter) {
+            fileWriter.onwriteend = function(e) {
+               alert('Escritura completada');
+            };
+
+            fileWriter.onerror = function(e) {
+               alert('No se pudo escribir ' + e.toString());
+            };
+
+            var blob = new Blob(['Esto se acaba de escribir!'], {type: 'text/plain'});
+            fileWriter.write(blob);
+         }, errorCallback);
+      }, errorCallback);
+   }
+
+   function errorCallback(error) {
+      alert("ERROR: " + error.code)
+   }
+}
+           
+ </script>
+  </head>
+  <body>
+    <h1>Uso de File</h1>
+    <p>Aguirre Frias y Guerrero Moreno</p>
+      <button id = "createFile">CREATE FILE</button>
+        <button id = "writeFile">WRITE FILE</button>
+  </body>
+</html>
