@@ -6,8 +6,9 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-        
+    function onBodyLoad(){
+	    document.addEventListener("deviceready", onDeviceReady, false);
+    }
     function onDeviceReady() {
         document.getElementById("createFile").addEventListener("click", createFile);
         document.getElementById("writeFile").addEventListener("click", writeFile);
@@ -21,7 +22,7 @@
 
    function successCallback(fs) {
       fs.root.getFile('archivo.txt', {create: true, exclusive: true}, function(fileEntry) {
-         alert('Archivo creado!')
+         alert('Archivo creado!'+ fs.root.fullPath)
       }, errorCallback);
    }
 
