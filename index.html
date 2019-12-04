@@ -22,7 +22,7 @@
 
    function successCallback(fs) {
       fs.root.getFile('archivo.txt', {create: true, exclusive: true}, function(fileEntry) {
-         alert('Archivo creado!'+ fs.root.fullPath)
+         alert('Archivo creado!'+ fs.root.fullPath + '')
       }, errorCallback);
    }
 
