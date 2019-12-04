@@ -5,13 +5,11 @@
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
-    // Wait for PhoneGap to load
-    //
+    
     function onBodyLoad() {
                 document.addEventListener("deviceready", onDeviceReady, false);
             }
-    // PhoneGap is ready
-    //
+    
     function onDeviceReady() {
 	    navigator.notification.alert("¡Práctica de archivos lista!");
         document.getElementById("createFile").addEventListener("click", createFile);
@@ -74,9 +72,7 @@ document.getElementById("readFile").addEventListener("click", readFile);
    function errorCallback(error) {
       alert("ERROR: " + error.code)
    }
-}
-      
-	    
+}          
     </script>
   </head>
   <body onload="onBodyLoad()">
@@ -91,3 +87,4 @@ document.getElementById("readFile").addEventListener("click", readFile);
     </div></center>
   </body>
 </html>
+
